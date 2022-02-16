@@ -68,3 +68,17 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## packages
+
+- proptypes
+
+## bulma
+-  https://blog.logrocket.com/how-to-use-bulma-css-with-react/#:~:text=Once%20the%20React%20app%20is,browser%20window%20via%20localhost%3A3000%20.
+
+
+## Troubleshooting
+- https://stackoverflow.com/questions/37937984/git-refusing-to-merge-unrelated-histories-on-rebase
+
+
+- 
