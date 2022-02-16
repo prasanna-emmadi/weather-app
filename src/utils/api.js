@@ -1,6 +1,6 @@
-const CITY_URL =
-  "http://dataservice.accuweather.com/locations/v1/cities/search";
-const DAILY_URL = "http://dataservice.accuweather.com/forecasts/v1/daily/1day";
+const BASE_URL = "https://dataservice.accuweather.com";
+const CITY_URL = `${BASE_URL}/locations/v1/cities/search`;
+const DAILY_URL = `${BASE_URL}/forecasts/v1/daily/1day`;
 
 const getResponseJson = (url) => {
   return fetch(url, {

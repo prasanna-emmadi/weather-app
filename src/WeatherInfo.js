@@ -15,9 +15,8 @@ const WeatherInfo = () => {
   };
 
   const onClick = (event) => {
+    // if the event.preventDefault() is not invoked the app is reloading
     event.preventDefault();
-    // /locations/v1/cities/search?apikey=NSZUoAzFLLzO6UOw8WzbKozEC7nWt9mr&q=oulu&language=en-us&details=true
-    console.log("onClick clicked");
 
     const fetchdata = async () => {
       try {
