@@ -74,11 +74,18 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 - proptypes
 
 ## bulma
--  https://blog.logrocket.com/how-to-use-bulma-css-with-react/#:~:text=Once%20the%20React%20app%20is,browser%20window%20via%20localhost%3A3000%20.
 
+- https://blog.logrocket.com/how-to-use-bulma-css-with-react/#:~:text=Once%20the%20React%20app%20is,browser%20window%20via%20localhost%3A3000%20.
 
 ## Troubleshooting
+
 - https://stackoverflow.com/questions/37937984/git-refusing-to-merge-unrelated-histories-on-rebase
 
+- https://developer.accuweather.com/accuweather-locations-api/apis/get/locations/v1/cities/search
+  - locationkey
+  - GET /locations/v1/cities/search?apikey=NSZUoAzFLLzO6UOw8WzbKozEC7nWt9mr&q=oulu&language=en-us&details=true HTTP/1.1
+    - response[0].Details.CanonicalLocationKey
+- http://dataservice.accuweather.com/forecasts/v1/daily/1day/
 
-- 
+- weather icon - var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
+  https://stackoverflow.com/questions/44177417/how-to-display-openweathermap-weather-icon

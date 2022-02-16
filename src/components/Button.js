@@ -1,10 +1,16 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 const Button = (props) => {
-    return (<button class="button is-info is-small" onClick={props.onClick}>{props.name}</button>);
-}
+  return (
+    <button className="button is-info is-small" onClick={props.onClick}>
+      {props.name}
+    </button>
+  );
+};
 
 Button.props = {
-    name: PropTypes.string.isRequired,
-    onClick: PropTypes.func.isRequired,
-}
+  name: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+};
+
+export default Button;
