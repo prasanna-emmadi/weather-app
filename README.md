@@ -87,5 +87,9 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
     - response[0].Details.CanonicalLocationKey
 - http://dataservice.accuweather.com/forecasts/v1/daily/1day/
 
+- accuweather icon - https://developer.accuweather.com/sites/default/files/22-s.png
+
 - weather icon - var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
   https://stackoverflow.com/questions/44177417/how-to-display-openweathermap-weather-icon
+
+- Cors issues solution = https://www.digitalocean.com/community/tutorials/nodejs-solve-cors-once-and-for-all-netlify-dev
