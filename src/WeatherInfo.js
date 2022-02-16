@@ -23,7 +23,7 @@ const WeatherInfo = () => {
       try {
         const ret = await getDailyForecast(value);
         console.log({ ret });
-        setData(ret.DailyForecasts);
+        setData(ret.data);
       } catch (e) {
         console.log(e);
       }
@@ -46,7 +46,10 @@ const WeatherInfo = () => {
         <Button name="Show weather info" onClick={onClick} />
       </form>
       {data.map((item, index) => {
-        const iconCode = item.Day.Icon;
+        let iconCode = item.WeatherIcon;
+        if (iconCode < 10) {
+          iconCode = "0" + iconCode;
+        }
         const iconUrl = `https://developer.accuweather.com/sites/default/files/${iconCode}-s.png`;
         return <Card key={index} cardImageUrl={iconUrl} />;
       })}

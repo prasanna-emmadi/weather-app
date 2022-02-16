@@ -2,7 +2,7 @@ const fetch = require("node-fetch");
 
 const BASE_URL = "https://dataservice.accuweather.com";
 const CITY_URL = `${BASE_URL}/locations/v1/cities/search`;
-const DAILY_URL = `${BASE_URL}/forecasts/v1/daily/1day`;
+const CURRENT_COND_URL = `${BASE_URL}/currentconditions/v1`;
 
 const fetchData = async (url) => {
   const response = await fetch(url, {
@@ -34,20 +34,21 @@ const handler = async function (event, context) {
     }
     const citydata = await response.json();
     const locationKey = citydata[0].Details.CanonicalLocationKey;
-    const dailyurl = `${DAILY_URL}/${locationKey}?apikey=${apikey}`;
-    const response1 = await fetch(dailyurl, {
+    const currUrl = `${CURRENT_COND_URL}/${locationKey}?apikey=${apikey}`;
+    const response1 = await fetch(currUrl, {
       headers: { Accept: "application/json" },
     });
+    console.log({ currUrl });
     if (!response1.ok) {
       // NOT res.status >= 200 && res.status < 300
       return { statusCode: response.status, body: response.statusText };
     }
 
     const weatherdata = await response1.json();
-
+    console.log({ weatherdata });
     return {
       statusCode: 200,
-      body: JSON.stringify({ DailyForecasts: weatherdata.DailyForecasts }),
+      body: JSON.stringify({ data: weatherdata }),
     };
   } catch (error) {
     // output to netlify function log
