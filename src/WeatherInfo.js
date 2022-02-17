@@ -101,8 +101,6 @@ const WeatherInfo = () => {
           const iconUrl = `https://developer.accuweather.com/sites/default/files/${iconCode}-s.png`;
           const { Value, Unit } = item.Temperature.Metric;
           const weatherText = item.WeatherText;
-          const place = capitalizeFirstLetter(city);
-
           const temperature = `${Value} ${Unit}`;
 
           return (
@@ -110,7 +108,7 @@ const WeatherInfo = () => {
               <HalfContainer>
                 <HalfContainer>
                   <Card
-                    city={city}
+                    city={capitalizeFirstLetter(city)}
                     country={country}
                     temperatue={temperature}
                     iconUrl={iconUrl}
