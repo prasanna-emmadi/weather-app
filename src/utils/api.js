@@ -1,5 +1,4 @@
 const apiKey = process.env.REACT_APP_WEATHER_API_KEY;
-console.log({ apiKey });
 
 export const getDailyForecast = (city) => {
   const url = `/.netlify/functions/node-fetch?city=${city}&apikey=${apiKey}`;

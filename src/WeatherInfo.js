@@ -5,9 +5,11 @@ import Card from "./components/Card";
 import { getDailyForecast } from "./utils/api";
 import HalfContainer from "./components/HalfContainer";
 import { capitalizeFirstLetter } from "./utils/stringUtil";
+import ErrorMessage from "./components/ErrorMessage";
 
 const WeatherInfo = () => {
   const [data, setData] = useState([]);
+  const [error, setError] = useState(false);
   const [value, setValue] = useState("");
 
   const onChange = (event) => {
@@ -23,9 +25,11 @@ const WeatherInfo = () => {
       try {
         const ret = await getDailyForecast(value);
         console.log({ ret });
+        setError(false);
         setData(ret.data);
       } catch (e) {
         console.log(e);
+        setError(true);
       }
     };
 
@@ -55,33 +59,37 @@ const WeatherInfo = () => {
           </div>
         </div>
       </form>
-      {data.map((item, index) => {
-        let iconCode = item.WeatherIcon;
-        if (iconCode < 10) {
-          iconCode = "0" + iconCode;
-        }
-        const iconUrl = `https://developer.accuweather.com/sites/default/files/${iconCode}-s.png`;
-        const { Value, Unit } = item.Temperature.Metric;
-        const weatherText = item.WeatherText;
-        const place = capitalizeFirstLetter(value);
+      {error ? (
+        <ErrorMessage message="City not found" />
+      ) : (
+        data.map((item, index) => {
+          let iconCode = item.WeatherIcon;
+          if (iconCode < 10) {
+            iconCode = "0" + iconCode;
+          }
+          const iconUrl = `https://developer.accuweather.com/sites/default/files/${iconCode}-s.png`;
+          const { Value, Unit } = item.Temperature.Metric;
+          const weatherText = item.WeatherText;
+          const place = capitalizeFirstLetter(value);
 
-        const temperature = `${Value} ${Unit}`;
+          const temperature = `${Value} ${Unit}`;
 
-        return (
-          <div className="block" key={index}>
-            <HalfContainer>
+          return (
+            <div className="block" key={index}>
               <HalfContainer>
-                <Card
-                  place={place}
-                  temperatue={temperature}
-                  iconUrl={iconUrl}
-                  weatherText={weatherText}
-                />
+                <HalfContainer>
+                  <Card
+                    place={place}
+                    temperatue={temperature}
+                    iconUrl={iconUrl}
+                    weatherText={weatherText}
+                  />
+                </HalfContainer>
               </HalfContainer>
-            </HalfContainer>
-          </div>
-        );
-      })}
+            </div>
+          );
+        })
+      )}
     </div>
   );
 };

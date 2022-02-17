@@ -29,23 +29,23 @@ const handler = async function (event, context) {
 
     if (!response.ok) {
       // NOT res.status >= 200 && res.status < 300
-      console.log("response fail 1");
       return { statusCode: response.status, body: response.statusText };
     }
     const citydata = await response.json();
+    if (citydata.length == 0) {
+      return { statusCode: 400, body: "No cities found" };
+    }
     const locationKey = citydata[0].Details.CanonicalLocationKey;
     const currUrl = `${CURRENT_COND_URL}/${locationKey}?apikey=${apikey}`;
     const response1 = await fetch(currUrl, {
       headers: { Accept: "application/json" },
     });
-    console.log({ currUrl });
     if (!response1.ok) {
       // NOT res.status >= 200 && res.status < 300
       return { statusCode: response.status, body: response.statusText };
     }
 
     const weatherdata = await response1.json();
-    console.log({ weatherdata });
     return {
       statusCode: 200,
       body: JSON.stringify({ data: weatherdata }),
