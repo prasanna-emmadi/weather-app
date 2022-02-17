@@ -5,9 +5,25 @@ const Card = (props) => {
   // temperature big bold
   // icon
   // weathertext
+  const country = "" + props.country + "  ";
+  const city = props.city + " ";
   return (
     <div className="box is-pulled-left">
-      <h5 className="title is-5">{props.place}</h5>
+      <h5 className="title is-5">
+        {city}
+        <sup
+          style={{
+            verticalAlign: "super",
+            fontSize: "smaller",
+            color: "white",
+            backgroundColor: "lightblue",
+            borderStyle: "rounded",
+            borderRadius: "3px",
+          }}
+        >
+          {country}
+        </sup>
+      </h5>
       <h3 className="title is-3">{props.temperatue}</h3>
       <div className="media  is-centered">
         <figure className="image is-48x48">
@@ -20,7 +36,8 @@ const Card = (props) => {
 };
 
 Card.propTypes = {
-  place: PropTypes.string.isRequired,
+  city: PropTypes.string.isRequired,
+  country: PropTypes.string.isRequired,
   temperatue: PropTypes.string.isRequired,
   iconUrl: PropTypes.string.isRequired,
   weatherText: PropTypes.string.isRequired,

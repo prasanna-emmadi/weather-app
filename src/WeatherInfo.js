@@ -110,7 +110,8 @@ const WeatherInfo = () => {
               <HalfContainer>
                 <HalfContainer>
                   <Card
-                    place={place}
+                    city={city}
+                    country={country}
                     temperatue={temperature}
                     iconUrl={iconUrl}
                     weatherText={weatherText}
