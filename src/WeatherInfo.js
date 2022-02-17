@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TextInput from "./components/TextInput";
 import Button from "./components/Button";
 import Card from "./components/Card";
@@ -11,6 +11,31 @@ const WeatherInfo = () => {
   const [data, setData] = useState([]);
   const [error, setError] = useState(false);
   const [value, setValue] = useState("");
+  const [latLng, setLatLng] = useState({
+    lat: 0.0,
+    lng: 0.0,
+    isLoaded: false,
+  });
+  const [city, setCity] = useState("");
+  const [country, setCountry] = useState("");
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          console.log({ position });
+          setLatLng({
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+            isLoaded: true,
+          });
+        },
+        (error) => {
+          alert(error);
+        }
+      );
+    }
+  }, [setLatLng]);
 
   const onChange = (event) => {
     const value = event.target.value;
@@ -23,10 +48,16 @@ const WeatherInfo = () => {
 
     const fetchdata = async () => {
       try {
-        const ret = await getDailyForecast(value);
+        const ret = await getDailyForecast(value, latLng.lat, latLng.lng);
         console.log({ ret });
-        setError(false);
-        setData(ret.data);
+        if (Array.isArray(ret.data) && ret.data.length > 0) {
+          setError(false);
+          setData(ret.data);
+          setCity(ret.city);
+          setCountry(ret.country);
+        } else {
+          setError(true);
+        }
       } catch (e) {
         console.log(e);
         setError(true);
@@ -70,7 +101,7 @@ const WeatherInfo = () => {
           const iconUrl = `https://developer.accuweather.com/sites/default/files/${iconCode}-s.png`;
           const { Value, Unit } = item.Temperature.Metric;
           const weatherText = item.WeatherText;
-          const place = capitalizeFirstLetter(value);
+          const place = capitalizeFirstLetter(city);
 
           const temperature = `${Value} ${Unit}`;
 

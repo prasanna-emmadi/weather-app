@@ -7,14 +7,14 @@ const Card = (props) => {
   // weathertext
   return (
     <div className="box is-pulled-left">
-      <h5 class="title is-5">{props.place}</h5>
-      <h3 class="title is-3">{props.temperatue}</h3>
-      <div class="media  is-centered">
+      <h5 className="title is-5">{props.place}</h5>
+      <h3 className="title is-3">{props.temperatue}</h3>
+      <div className="media  is-centered">
         <figure className="image is-48x48">
           <img src={props.iconUrl} alt={props.weatherText} />
         </figure>
       </div>
-      <h6 class="title is-6">{props.weatherText}</h6>
+      <h6 className="title is-6">{props.weatherText}</h6>
     </div>
   );
 };
