@@ -1,36 +1,29 @@
 import PropTypes from "prop-types";
 
-// pure functional component
 const Card = (props) => {
+  // place name
+  // temperature big bold
+  // icon
+  // weathertext
   return (
-    <div className="card">
-      <div className="card-content">
-        <div className="media">
-          <div className="media-left">
-            <figure className="image is-48x48">
-              <img src={props.cardImageUrl} alt="Placeholder image" />
-            </figure>
-          </div>
-          <div className="media-content">
-            <p className="title is-4">John Smith</p>
-            <p className="subtitle is-6">@johnsmith</p>
-          </div>
-        </div>
-
-        <div className="content">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec
-          iaculis mauris. <a>@bulmaio</a>.<a href="#">#css</a>{" "}
-          <a href="#">#responsive</a>
-        </div>
+    <div className="box is-pulled-left">
+      <h5 class="title is-5">{props.place}</h5>
+      <h3 class="title is-3">{props.temperatue}</h3>
+      <div class="media  is-centered">
+        <figure className="image is-48x48">
+          <img src={props.iconUrl} alt="Placeholder image" />
+        </figure>
       </div>
+      <h6 class="title is-6">{props.weatherText}</h6>
     </div>
   );
 };
 
 Card.propTypes = {
-  cardImageUrl: PropTypes.string.isRequired,
-  content: PropTypes.string,
-  mediaContent: PropTypes.string,
+  place: PropTypes.string.isRequired,
+  temperatue: PropTypes.string.isRequired,
+  iconUrl: PropTypes.string.isRequired,
+  weatherText: PropTypes.string.isRequired,
 };
 
 export default Card;

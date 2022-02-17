@@ -1,13 +1,12 @@
-//import PropTypes from "prop-types";
 import { useState } from "react";
 import TextInput from "./components/TextInput";
 import Button from "./components/Button";
 import Card from "./components/Card";
 import { getDailyForecast } from "./utils/api";
 import HalfContainer from "./components/HalfContainer";
+import { capitalizeFirstLetter } from "./utils/stringUtil";
 
 const WeatherInfo = () => {
-  //const [showCard, setShowCard] = useState(false);
   const [data, setData] = useState([]);
   const [value, setValue] = useState("");
 
@@ -17,7 +16,7 @@ const WeatherInfo = () => {
   };
 
   const onClick = (event) => {
-    // if the event.preventDefault() is not invoked the app is reloading
+    // Note: if the event.preventDefault() is not invoked the app is reloading
     event.preventDefault();
 
     const fetchdata = async () => {
@@ -36,25 +35,25 @@ const WeatherInfo = () => {
 
   return (
     <div className="container">
-      <form onSubmit={onSubmit}>
-        <HalfContainer>
-          <div className="columns is-mobile">
-            <div className="column  field">
-              <TextInput
-                value={value}
-                placeholder="Enter name of the city"
-                onChange={onChange}
-              />
-            </div>
-            <div className="column is-narrow">
-              <Button
-                name="Show weather info"
-                onClick={onClick}
-                style={{ paddingTop: "10px" }}
-              />
+      <form onSubmit={onSubmit} className="block">
+        <div className="level">
+          <div className="level-left">
+            <div className="level-item">
+              <div className="field has-addons">
+                <p className="control">
+                  <TextInput
+                    value={value}
+                    placeholder="Enter name of the city"
+                    onChange={onChange}
+                  />
+                </p>
+                <p className="control">
+                  <Button name="Show weather info" onClick={onClick} />
+                </p>
+              </div>
             </div>
           </div>
-        </HalfContainer>
+        </div>
       </form>
       {data.map((item, index) => {
         let iconCode = item.WeatherIcon;
@@ -62,12 +61,25 @@ const WeatherInfo = () => {
           iconCode = "0" + iconCode;
         }
         const iconUrl = `https://developer.accuweather.com/sites/default/files/${iconCode}-s.png`;
+        const { Value, Unit } = item.Temperature.Metric;
+        const weatherText = item.WeatherText;
+        const place = capitalizeFirstLetter(value);
+
+        const temperature = `${Value} ${Unit}`;
+
         return (
-          <HalfContainer key={index}>
+          <div className="block" key={index}>
             <HalfContainer>
-              <Card cardImageUrl={iconUrl} />
+              <HalfContainer>
+                <Card
+                  place={place}
+                  temperatue={temperature}
+                  iconUrl={iconUrl}
+                  weatherText={weatherText}
+                />
+              </HalfContainer>
             </HalfContainer>
-          </HalfContainer>
+          </div>
         );
       })}
     </div>
