@@ -64,7 +64,9 @@ const WeatherInfo = () => {
         const iconUrl = `https://developer.accuweather.com/sites/default/files/${iconCode}-s.png`;
         return (
           <HalfContainer key={index}>
-            <Card cardImageUrl={iconUrl} />
+            <HalfContainer>
+              <Card cardImageUrl={iconUrl} />
+            </HalfContainer>
           </HalfContainer>
         );
       })}
