@@ -11,7 +11,7 @@ const Card = (props) => {
       <h3 class="title is-3">{props.temperatue}</h3>
       <div class="media  is-centered">
         <figure className="image is-48x48">
-          <img src={props.iconUrl} alt="Placeholder image" />
+          <img src={props.iconUrl} alt={props.weatherText} />
         </figure>
       </div>
       <h6 class="title is-6">{props.weatherText}</h6>
