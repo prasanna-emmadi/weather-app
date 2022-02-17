@@ -12,7 +12,7 @@ const TextInput = (props) => {
   );
 };
 
-TextInput.props = {
+TextInput.propTypes = {
   value: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,

@@ -4,6 +4,7 @@ import TextInput from "./components/TextInput";
 import Button from "./components/Button";
 import Card from "./components/Card";
 import { getDailyForecast } from "./utils/api";
+import HalfContainer from "./components/HalfContainer";
 
 const WeatherInfo = () => {
   //const [showCard, setShowCard] = useState(false);
@@ -36,14 +37,24 @@ const WeatherInfo = () => {
   return (
     <div className="container">
       <form onSubmit={onSubmit}>
-        <div className="field">
-          <TextInput
-            value={value}
-            placeholder="Enter name of the city"
-            onChange={onChange}
-          />
-        </div>
-        <Button name="Show weather info" onClick={onClick} />
+        <HalfContainer>
+          <div className="columns is-mobile">
+            <div className="column  field">
+              <TextInput
+                value={value}
+                placeholder="Enter name of the city"
+                onChange={onChange}
+              />
+            </div>
+            <div className="column is-narrow">
+              <Button
+                name="Show weather info"
+                onClick={onClick}
+                style={{ paddingTop: "10px" }}
+              />
+            </div>
+          </div>
+        </HalfContainer>
       </form>
       {data.map((item, index) => {
         let iconCode = item.WeatherIcon;
@@ -51,7 +62,11 @@ const WeatherInfo = () => {
           iconCode = "0" + iconCode;
         }
         const iconUrl = `https://developer.accuweather.com/sites/default/files/${iconCode}-s.png`;
-        return <Card key={index} cardImageUrl={iconUrl} />;
+        return (
+          <HalfContainer key={index}>
+            <Card cardImageUrl={iconUrl} />
+          </HalfContainer>
+        );
       })}
     </div>
   );

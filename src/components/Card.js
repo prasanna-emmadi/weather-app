@@ -35,7 +35,7 @@ const Card = (props) => {
   );
 };
 
-Card.props = {
+Card.propTypes = {
   cardImageUrl: PropTypes.string.isRequired,
   content: PropTypes.string,
   mediaContent: PropTypes.string,
